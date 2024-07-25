@@ -1,4 +1,14 @@
-String Music_Screen_Title="Music Screen Title";
-String Default_Thumbnail_Path="assets/default_music_thumbnail.jpg";
-double Default_Width = 20;
-double Default_height = 20;
+import 'package:flutter/material.dart';
+
+String musicScreenTitle = "Music Screen Title";
+String defaultThumbnailPath = "assets/default_music_thumbnail.jpg";
+
+double iconSize = 40;
+dynamic iconColor = Colors.black;
+
+double defaultWidth = 20;
+double defaultHeight = 20;
+
+// theme constants light
+dynamic backgroundColorLight = Colors.grey.shade400;
+dynamic backgroundColorDark = Colors.grey.shade900;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:music_player/screens/player.dart';
+import 'package:music_player/themes/theme.dart';
 
 void main(List<String> args) {
   runApp(const MyApp());
@@ -22,10 +23,12 @@ void main(List<String> args) {
 // }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
+  
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme:lightMode,
+      darkTheme: darkMode,
       debugShowCheckedModeBanner: false,
       home:PlayerScreen(),
     );

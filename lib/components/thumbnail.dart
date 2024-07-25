@@ -15,9 +15,9 @@ class _MusicThumbnailState extends State<MusicThumbnail> {
   @override
   void initState() {
     super.initState();
-    imagePath = widget.imagePath ?? Default_Thumbnail_Path;
-    width = widget.width ?? Default_Width;
-    height = widget.height ?? Default_height;
+    imagePath = widget.imagePath ?? defaultThumbnailPath;
+    width = widget.width ?? defaultWidth;
+    height = widget.height ?? defaultHeight;
   }
 
   @override

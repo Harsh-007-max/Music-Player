@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-dynamic TopBar(String Title){
+dynamic topBar(String title) {
   return AppBar(
-    title: Text(Title),
+    centerTitle: true,
+    title: Text(title),
   );
 }

@@ -1,29 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:music_player/components/AppBar.dart';
 import 'package:music_player/components/thumbnail.dart';
+import 'package:music_player/components/toggle_button.dart';
 import 'package:music_player/constants.dart';
 
-class PlayerScreen extends StatelessWidget {
+class PlayerScreen extends StatefulWidget {
   const PlayerScreen({super.key});
 
   @override
+  State<PlayerScreen> createState() => _PlayerScreenState();
+}
+
+class _PlayerScreenState extends State<PlayerScreen> {
+  @override
   Widget build(BuildContext context) {
+    bool isPlaying = true;
     return Scaffold(
-      appBar: TopBar(Music_Screen_Title),
+      appBar: topBar(musicScreenTitle),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Center(
             child: MusicThumbnail(
-                imagePath: Default_Thumbnail_Path, width: 250, height: 250),
+                imagePath: defaultThumbnailPath, width: 250, height: 250),
           ),
-          const Center(
+          Center(
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Icon(Icons.skip_previous, color: Colors.black, size: 40),
-                Icon(Icons.play_arrow, color: Colors.black, size: 40),
-                Icon(Icons.skip_next, color: Colors.black, size: 40),
+                IconButton(
+                  onPressed: () => {print("pressed1")},
+                  icon: Icon(Icons.skip_previous,
+                       size: iconSize),
+                ),
+                toggleButton(
+                    icon1: Icon(Icons.play_arrow,
+                         size: iconSize),
+                    icon2: Icon(Icons.pause,  size: iconSize),
+                    stateVariable: isPlaying,
+                    callBackFunction: () => {}),
+                IconButton(
+                  onPressed: () => {print("pressed3")},
+                  icon: Icon(Icons.skip_next,  size: iconSize),
+                ),
               ],
             ),
           ),
