@@ -17,7 +17,7 @@ class _ListScreenState extends State<ListScreen> {
   @override
     Widget build(BuildContext context) {
       return Scaffold(
-          appBar: appBar(title:"List Page"),
+          appBar: appBar(title:"Music Player"),
           body: FutureBuilder(
             future:getSongList(),
             builder:(context,snapshot){
@@ -26,11 +26,15 @@ class _ListScreenState extends State<ListScreen> {
                 itemCount:snapshot.data!.length,
                 itemBuilder:(context,index){
                 return ListTile(
-                    leading:snapshot.data[index].albumArt!=null?Image.memory(snapshot.data![index].albumArt):Image.asset("assets/defaults/default_music_thumbnail.jpg"),
+                    leading:ClipOval(child:snapshot.data[index].albumArt!=null?Image.memory(snapshot.data![index].albumArt,width:50,height:50,fit:BoxFit.cover):Image.asset("assets/defaults/default_music_thumbnail.jpg",width:50,height:50,fit:BoxFit.cover)),
                     title:Text(snapshot.data![index].trackName ?? "Unknown"),
                     subtitle: Text(snapshot.data![index].trackArtistNames[0] ?? "Unknown"),
                     onTap:(){
-                      playSong(audioPlayer,snapshot.data[index].filePath);
+                      if(audioPlayer.state==PlayerState.stopped){
+                        playSong(audioPlayer,snapshot.data[index].filePath);
+                      }else{
+                        togglePlayPause(audioPlayer);
+                      }
                     },
                   );
                 },

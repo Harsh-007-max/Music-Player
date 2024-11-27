@@ -36,13 +36,6 @@ Future<List<File>> getAllSongFiles() async{
   return mp3Files;
 }
 
-Future<void> getSongMetadata(File songFile)async{
-  try{
-    final metadata=await MetadataRetriever.fromFile(songFile);
-  }catch(e){
-    logger.e("[3] error reading metadata: $e");
-  }
-}
 
 Future<dynamic> getSongList()async{
   List<File> mp3Files=await getAllSongFiles();
@@ -59,7 +52,7 @@ Future<dynamic> getSongList()async{
   return songList;
 }
 
-void storage_music_functions(){
+void storageMusicFunctions(){
   requestStoragePermission().then((value)=>{
     getAllSongFiles()
   });
