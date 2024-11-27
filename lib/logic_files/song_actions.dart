@@ -11,3 +11,6 @@ void togglePlayPause(AudioPlayer audioPlayer)async{
     await audioPlayer.resume();
   }
 }
+void stopSong(AudioPlayer audioPlayer)async{
+  await audioPlayer.stop();
+}

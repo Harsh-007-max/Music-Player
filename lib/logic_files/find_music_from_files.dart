@@ -22,7 +22,7 @@ Future<void> requestStoragePermission()async{
 
 Future<List<File>> getAllSongFiles() async{
   List<File> mp3Files=[];
-  Directory directory=Directory("/storage/emulated/0/Music");
+  Directory directory=Directory("/storage/emulated/0/Music/");
   try{
     await for(var entity in directory.list(recursive:true,followLinks:false)){
       if(entity is File && path.extension(entity.path).toLowerCase()==".mp3"){
