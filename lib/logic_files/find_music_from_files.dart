@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter_media_metadata/flutter_media_metadata.dart';
 import 'package:music_player/utils/logger.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -48,7 +47,7 @@ Future<dynamic> getSongList()async{
       logger.e("[4] error reading metadata: $e");
     }
   }
-  logger.i(songList);
+  logger.i("[5] Song Example: ${songList[0]}");
   return songList;
 }
 

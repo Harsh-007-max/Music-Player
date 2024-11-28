@@ -14,3 +14,6 @@ void togglePlayPause(AudioPlayer audioPlayer)async{
 void stopSong(AudioPlayer audioPlayer)async{
   await audioPlayer.stop();
 }
+void restartSong(AudioPlayer audioPlayer)async{
+  await audioPlayer.seek(const Duration(seconds:0));
+}
