@@ -5,17 +5,23 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:path/path.dart' as path;
 
 PermissionStatus? status;
-Future<void> requestStoragePermission()async{
+PermissionStatus? storageStatus;
+Future<dynamic> requestStoragePermission()async{
   status = await Permission.audio.status;
-  if(!status!.isGranted){
+  storageStatus = await Permission.storage.status;
+  if(!status!.isGranted || !storageStatus!.isGranted){
     status= await Permission.audio.request();  
+    storageStatus = await Permission.storage.request();
     if(status!.isGranted){
       logger.i("[1] Storage Permission Granted");
+      return true;
     }else{
       logger.e("[1] Storage Permission Denied");
+      return false;
     }
   }else{
     logger.i("[1] Storage Permission Already Granted");
+      return true;
   }
 }
 
@@ -29,12 +35,11 @@ Future<List<File>> getAllSongFiles() async{
       }
     }
   }catch(e){
-    logger.e("[2] error scanning directory: $e");
+    logger.e("[1] error scanning directory: $e");
   }
-  logger.i("[2] Found ${mp3Files.length} mp3 files");
+  logger.i("[1] Found ${mp3Files.length} mp3 files");
   return mp3Files;
 }
-
 
 Future<dynamic> getSongList()async{
   List<File> mp3Files=await getAllSongFiles();
@@ -44,10 +49,10 @@ Future<dynamic> getSongList()async{
       final metadata=await MetadataRetriever.fromFile(songFile);
       songList.add(metadata);
     }catch(e){
-      logger.e("[4] error reading metadata: $e");
+      logger.e("[1] error reading metadata: $e");
     }
   }
-  logger.i("[5] Song Example: ${songList[0]}");
+  logger.i("[1] Song Example: ${songList[0]}");
   return songList;
 }
 
